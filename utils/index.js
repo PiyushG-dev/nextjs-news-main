@@ -1,3 +1,5 @@
+import axios from "axios";
+
 // image imports
 
 import hero from "@/public/assets/hero.jpg";
@@ -57,3 +59,17 @@ export {
   subTrend11,
   subTrend12,
 };
+
+export async function fetchTopHeadlines(country) {
+  try {
+    const response = await axios.get("https://newsapi.org/v2/top-headlines", {
+      params: {
+        country: country,
+        apiKey: process.env.NEWS_API_KEY,
+      },
+    });
+    return response.data;
+  } catch (err) {
+    console.error(err);
+  }
+}

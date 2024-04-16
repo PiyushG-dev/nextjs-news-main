@@ -1,5 +1,5 @@
-"use client";
 import React from "react";
+import Image from "next/image";
 import {
   Card,
   CardContent,
@@ -9,11 +9,10 @@ import {
   CardTitle,
 } from "./ui/card";
 import { hero } from "@/utils";
-import Image from "next/image";
+import { fetchTopHeadlines } from "@/utils";
 
-const Feed = () => {
-  const headline =
-    "Russia’s Youngest-ever Astronauts Blast Off to Space Station";
+const Feed = async () => {
+  const { articles } = await fetchTopHeadlines("us");
 
   // shortening the headline if needed
   const handleTruncate = (headline) => {
@@ -25,8 +24,8 @@ const Feed = () => {
 
   return (
     <section className="w-full">
-      <div className="screen-max-width flex gap-3">
-        {[2, 8, 9].map((item, i) => {
+      <div className="screen-max-width grid grid-cols-3 gap-3 lg:px-5">
+        {articles.map((item, i) => {
           return (
             <Card key={i}>
               <CardHeader>
@@ -37,11 +36,16 @@ const Feed = () => {
                   </p>
                 </div>
                 <CardTitle className="text-xl">
-                  {handleTruncate(headline)}
+                  {handleTruncate(item.title)}
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <Image src={hero} alt="hero" />
+                <Image
+                  src={item.urlToImage ? item.urlToImage : hero}
+                  alt="hero"
+                  width={500}
+                  height={500}
+                />
               </CardContent>
               <CardFooter className="gap-2">
                 <p className="uppercase text-muted-foreground text-xs">
