@@ -18,7 +18,7 @@ const NewsCard = ({ title, url, backupImg }) => {
           width={1920}
           height={1080}
           style={{
-            height: "100%",
+            height: "25vh",
             width: "100%",
             objectFit: "cover",
             objectPosition: "top",

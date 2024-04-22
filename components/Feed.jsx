@@ -1,11 +1,14 @@
-import React from "react";
+"use client";
+import React, { useContext } from "react";
 import NewsCard from "./NewsCard";
 import { fetchTopHeadlines } from "@/utils";
 import breaking from "@/public/assets/breaking.jpeg";
 import { ComboboxDemo } from "./ui/combobox";
+import { NewsContext } from "@/context/NewsContext";
 
-const Feed = async () => {
-  const { articles } = await fetchTopHeadlines("us");
+const Feed = () => {
+  const { articles } = useContext(NewsContext);
+  // const { articles } = await fetchTopHeadlines("in");
 
   // shortening the headline if needed
   const handleTruncate = (headline) => {
@@ -17,18 +20,20 @@ const Feed = async () => {
 
   return (
     <section className="w-full">
-      <ComboboxDemo />
-      <div className="screen-max-width grid grid-cols-3 gap-3 lg:px-5">
-        {articles.map((item, i) => {
-          return (
-            <NewsCard
-              key={i}
-              title={handleTruncate(item.title)}
-              url={item.urlToImage}
-              backupImg={breaking}
-            />
-          );
-        })}
+      <div className="screen-max-width">
+        <ComboboxDemo />
+        <div className=" grid grid-cols-3 gap-3 lg:px-5 py-5">
+          {articles.map((item, i) => {
+            return (
+              <NewsCard
+                key={i}
+                title={handleTruncate(item.title)}
+                url={item.urlToImage}
+                backupImg={breaking}
+              />
+            );
+          })}
+        </div>
       </div>
     </section>
   );

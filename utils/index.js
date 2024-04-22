@@ -5,7 +5,7 @@ export async function fetchTopHeadlines(country) {
     const response = await axios.get("https://newsapi.org/v2/top-headlines", {
       params: {
         country: country,
-        apiKey: process.env.NEWS_API_KEY,
+        apiKey: process.env.NEXT_PUBLIC_NEWS_API_KEY,
       },
     });
     return response.data;
