@@ -1,8 +1,12 @@
-import React from "react";
+"use client";
+import React, { useContext } from "react";
 import Image from "next/image";
+import SkeletonCard from "./SkeletonCard";
+import { NewsContext } from "@/context/NewsContext";
 
 const NewsCard = ({ title, url, backupImg }) => {
-  return (
+  const { isLoading } = useContext(NewsContext);
+  return !isLoading ? (
     <div className="relative border rounded-xl">
       <div className="px-5 py-5">
         <div className="flex items-center gap-2 pb-3">
@@ -31,6 +35,8 @@ const NewsCard = ({ title, url, backupImg }) => {
         <p className="uppercase text-muted-foreground text-xs">9:37 PM IST</p>
       </div>
     </div>
+  ) : (
+    <SkeletonCard />
   );
 };
 
