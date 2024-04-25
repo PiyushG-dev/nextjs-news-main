@@ -12,7 +12,7 @@ const heroInfo = {
   img: hero,
 };
 
-export default function Home() {
+export default function Science() {
   return (
     <>
       <Hero

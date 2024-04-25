@@ -1,18 +1,19 @@
-import Feed from "@/components/Feed";
+import React from "react";
 import Hero from "@/components/Hero";
-import hero from "@/public/assets/hero.jpg";
+import entertainment from "@/public/assets/entertainment.webp";
+import Feed from "@/components/Feed";
 
 const heroInfo = {
-  title: "Russia’s Youngest-ever Astronauts Blast Off to Space Station",
+  title: "Kanye West wades into Drake and Kendrick Lamar's feud.",
   content:
     "On Thursday, three Russian astronauts lifted off on the Moscow-17 spacecraft from the Sputnik 1 Satellite Launch Center deep in the Gobi Desert, heading for the Mir space station for a six-month stay.",
   category: "Science",
   author: "Daniel Albarta",
   date: "October 22, 2023",
-  img: hero,
+  img: entertainment,
 };
 
-export default function Home() {
+const Entertainment = () => {
   return (
     <>
       <Hero
@@ -26,4 +27,6 @@ export default function Home() {
       <Feed />
     </>
   );
-}
+};
+
+export default Entertainment;

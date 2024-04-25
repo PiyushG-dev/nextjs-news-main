@@ -1,18 +1,19 @@
-import Feed from "@/components/Feed";
+import React from "react";
 import Hero from "@/components/Hero";
-import hero from "@/public/assets/hero.jpg";
+import tech from "@/public/assets/technology.jpeg";
+import Feed from "@/components/Feed";
 
 const heroInfo = {
-  title: "Russia’s Youngest-ever Astronauts Blast Off to Space Station",
+  title: "Microsoft, Amazon face scrutiny from UK govt over recent AI deals.",
   content:
     "On Thursday, three Russian astronauts lifted off on the Moscow-17 spacecraft from the Sputnik 1 Satellite Launch Center deep in the Gobi Desert, heading for the Mir space station for a six-month stay.",
   category: "Science",
   author: "Daniel Albarta",
   date: "October 22, 2023",
-  img: hero,
+  img: tech,
 };
 
-export default function Home() {
+const Technology = () => {
   return (
     <>
       <Hero
@@ -26,4 +27,6 @@ export default function Home() {
       <Feed />
     </>
   );
-}
+};
+
+export default Technology;

@@ -1,6 +1,7 @@
 "use client";
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
+import { usePathname } from "next/navigation";
 
 export const NewsContext = createContext();
 
@@ -8,6 +9,7 @@ const NewsContextProvider = ({ children }) => {
   const [value, setValue] = useState("in");
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const pathname = usePathname();
 
   const frameworks = [
     {
@@ -34,7 +36,7 @@ const NewsContextProvider = ({ children }) => {
 
   useEffect(() => {
     fetchTopHeadlines();
-  }, [value]);
+  }, [value, pathname]);
 
   const fetchTopHeadlines = async () => {
     try {
@@ -42,6 +44,7 @@ const NewsContextProvider = ({ children }) => {
       const response = await axios.get("https://newsapi.org/v2/top-headlines", {
         params: {
           country: value,
+          category: pathname === "/" ? null : pathname.slice(1),
           apiKey: process.env.NEXT_PUBLIC_NEWS_API_KEY,
         },
       });
